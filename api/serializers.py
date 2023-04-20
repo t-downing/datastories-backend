@@ -6,13 +6,13 @@ from api.models import Model, QualElement, QuantElement, Layout, QualElementPosi
 class ModelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Model
-        fields = ["id", "label"]
+        fields = ["id", "label", "default_layout_id"]
 
 
 class LayoutSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Layout
-        fields = ["id", "label"]
+        fields = ["id", "label", "model_id"]
 
 
 class QualElementSerializer(serializers.HyperlinkedModelSerializer):

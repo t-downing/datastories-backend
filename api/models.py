@@ -3,6 +3,7 @@ from django.db import models
 
 class Model(models.Model):
     label = models.CharField()
+    default_layout = models.OneToOneField("layout", null=True, blank=True, on_delete=models.SET_NULL, related_name="model_default")
 
     def __str__(self):
         return f"{self.label} [{self.pk}]"

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import ModelSerializer, QualElementSerializer
+from .serializers import ModelSerializer, QualElementSerializer, LayoutSerializer
 from api.models import Model, QualElement, QuantElement, Layout, QualElementPosition, QuantElementPosition, Connection
 
 
@@ -12,3 +12,8 @@ class ModelViewSet(viewsets.ModelViewSet):
 class QualElementViewSet(viewsets.ModelViewSet):
     queryset = QualElement.objects.all()
     serializer_class = QualElementSerializer
+
+
+class LayoutViewSet(viewsets.ModelViewSet):
+    queryset = Layout.objects.all()
+    serializer_class = LayoutSerializer
