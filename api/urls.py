@@ -4,6 +4,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('models', views.ModelViewSet)
+router.register('qualelements', views.QualElementViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
