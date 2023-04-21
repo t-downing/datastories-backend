@@ -6,6 +6,7 @@ router = routers.DefaultRouter()
 router.register('models', views.ModelViewSet)
 router.register('qualelements', views.QualElementViewSet)
 router.register('layouts', views.LayoutViewSet)
+router.register('qualelementpositions', views.QualElementPositionViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),

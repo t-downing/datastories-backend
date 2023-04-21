@@ -10,9 +10,11 @@ class ModelSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class LayoutSerializer(serializers.HyperlinkedModelSerializer):
+    model_id = serializers.PrimaryKeyRelatedField(queryset=Model.objects.all())
+
     class Meta:
         model = Layout
-        fields = ["id", "label", "model_id"]
+        fields = ["id", "label", "model_id", ]
 
 
 class QualElementSerializer(serializers.HyperlinkedModelSerializer):
@@ -22,9 +24,10 @@ class QualElementSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class QualElementPositionSerializer(serializers.HyperlinkedModelSerializer):
+    element = QualElementSerializer(many=False, read_only=True)
     class Meta:
         model = QualElementPosition
-        fields = ["id", "x", "y", "element_id", "layout_id"]
+        fields = ["id", "x", "y", "element", "layout_id"]
 
 
 class ConnectionSerializer(serializers.HyperlinkedModelSerializer):

@@ -4,3 +4,4 @@ from api.models import Model, QualElement, QuantElement, Layout, QualElementPosi
 admin.site.register(Model)
 admin.site.register(QualElement)
 admin.site.register(Layout)
+admin.site.register(QualElementPosition)
