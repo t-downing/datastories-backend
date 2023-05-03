@@ -4,17 +4,20 @@ from api.models import Model, QualElement, QuantElement, Layout, QualElementPosi
 
 
 class ModelSerializer(serializers.HyperlinkedModelSerializer):
+    default_layout = serializers.PrimaryKeyRelatedField(queryset=Layout.objects.all(), required=False)
+
     class Meta:
         model = Model
-        fields = ["id", "label", "default_layout_id"]
+        fields = ["id", "label", "default_layout"]
+
 
 
 class LayoutSerializer(serializers.HyperlinkedModelSerializer):
-    model_id = serializers.PrimaryKeyRelatedField(queryset=Model.objects.all())
+    model = serializers.PrimaryKeyRelatedField(queryset=Model.objects.all())
 
     class Meta:
         model = Layout
-        fields = ["id", "label", "model_id", ]
+        fields = ["id", "label", "model", ]
 
 
 class QualElementSerializer(serializers.HyperlinkedModelSerializer):
@@ -31,6 +34,8 @@ class QualElementPositionSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ConnectionSerializer(serializers.HyperlinkedModelSerializer):
+    to_element = serializers.PrimaryKeyRelatedField(queryset=QualElement.objects.all())
+    from_element = serializers.PrimaryKeyRelatedField(queryset=QualElement.objects.all())
     class Meta:
         model = Connection
-        fields = ["id", "from_element_id", "to_element_id"]
+        fields = ["id", "from_element", "to_element"]

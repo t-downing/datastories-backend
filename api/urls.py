@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views
+from api import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -7,6 +7,7 @@ router.register('models', views.ModelViewSet)
 router.register('qualelements', views.QualElementViewSet)
 router.register('layouts', views.LayoutViewSet)
 router.register('qualelementpositions', views.QualElementPositionViewSet)
+router.register('connections', views.ConnectionViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),

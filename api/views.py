@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from django_filters import rest_framework as filters
-from api.serializers import ModelSerializer, QualElementSerializer, LayoutSerializer, QualElementPositionSerializer
+from api.serializers import ModelSerializer, QualElementSerializer, LayoutSerializer, QualElementPositionSerializer, ConnectionSerializer
 from api.models import Model, QualElement, QuantElement, Layout, QualElementPosition, QuantElementPosition, Connection
 
 
@@ -21,7 +21,7 @@ class LayoutViewSet(viewsets.ModelViewSet):
     queryset = Layout.objects.all()
     serializer_class = LayoutSerializer
     filter_backends = (filters.DjangoFilterBackend, )
-    filterset_fields = ["model_id"]
+    filterset_fields = ["model"]
 
 
 class QualElementPositionViewSet(viewsets.ModelViewSet):
@@ -29,3 +29,10 @@ class QualElementPositionViewSet(viewsets.ModelViewSet):
     serializer_class = QualElementPositionSerializer
     filter_backends = (filters.DjangoFilterBackend, )
     filterset_fields = ["layout_id"]
+
+
+class ConnectionViewSet(viewsets.ModelViewSet):
+    queryset = Connection.objects.all()
+    serializer_class = ConnectionSerializer
+    # filter_backends = (filters.DjangoFilterBackend, )
+    # filterset_fields = {"id": ["in", "exact"]}
